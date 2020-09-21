@@ -6,57 +6,48 @@ var board = {
     col: 0,
     row: 0,
     hidden: true,
-    isMine: true,
-    isMarked: ,
-    surroundingMines:},
+    isMine: false,
+},
     {col: 0,
     row: 1,
     hidden: true,
-    isMine: true,
-    isMarked: ,
-    surroundingMines: },
+    isMine: false,
+},
     {col: 0,
     row: 2,
     hidden: true,
-    isMine: true,
-    isMarked: ,
-    surroundingMines: },
+    isMine: false,
+},
     {col: 1,
     row: 0,
     hidden: true,
     isMine: true,
-    isMarked: ,
-    surroundingMines:},
+},
     {col: 1,
     row: 1,
     hidden: true,
     isMine: true,
-    isMarked: ,
-    surroundingMines: },
+},
     {col: 1,
     row: 2,
     hidden: true,
     isMine: true,
-    isMarked: ,
-    surroundingMines: },
+},
     {col: 2,
     row: 0,
     hidden: true,
     isMine: true,
-    isMarked: ,
-    surroundingMines: },
+},
     {col: 2,
     row: 1,
     hidden: true,
     isMine: true,
-    isMarked: ,
-    surroundingMines: },
+},
     {col: 2,
     row: 2,
     hidden: true,
     isMine: true,
-    isMarked: ,
-    surroundingMines: }]
+    }]
 }
 
 
@@ -65,7 +56,9 @@ function startGame () {
   for(let i=0;i<board.cells.length;i++){
     board.cells[i].surroundingMines = countSurroundingMines(board.cells[i])
   }
-  
+  document.addEventListener ('click', checkForWin)
+  document.addEventListener ('contextmenu', checkForWin)
+
   lib.initBoard()
 }
 
@@ -74,10 +67,19 @@ function startGame () {
 // 1. Are all of the cells that are NOT mines visible?
 // 2. Are all of the mines marked?
 function checkForWin () {
+  for(i=0;i<board.cells.length;i++){
+    if (board.cells[i].isMine === true && board.cells[i].isMarked === false)
+        return
+      if (board.cells[i].isMine === false && board.cells[i].hidden === true)
+        return
+  }
+// if it IS a mine and it ISNT marked, you don't win
+// if it ISNT a mine and it IS hidden, you don't win
+
 
   // You can use this function call to declare a winner (once you've
   // detected that they've won, that is!)
-  //   lib.displayMessage('You win!')
+    lib.displayMessage('You win!')
 }
 
 // Define this function to count the number of mines around the cell
