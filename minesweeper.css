@@ -1,6 +1,6 @@
 html, body {
   height: 100%;
-  font-family: 'Open Sans', sans-serif
+  font-family: 'Syne', sans-serif;
 }
 
 body {
@@ -8,6 +8,9 @@ body {
   align-items: center;
   justify-content: flex-center;
   flex-direction: column;
+  font-family: 'Syne', sans-serif;
+  font-weight: 400;
+  background-color: white
 }
 
 #message, #notes {
@@ -57,4 +60,8 @@ div.hidden:hover {
 
 div.marked, div.marked:hover {
   background: no-repeat center/60% url("images/mark.svg") deepskyblue;
+}
+.flex-container {
+  display: flex;
+  align-items: flex-start;
 }
