@@ -1,22 +1,32 @@
 document.addEventListener('DOMContentLoaded', startGame)
 
 // Define your `board` object here!
-var board = {}
-const defaultBoard = 4
+const board = {}
+const defaultBoard = 6
 
+// Stretch 1: AutoGenerate Board
 function generateBoard(n){
+  //  resetBoard()
   board.cells = []
-  let rowCount = 0
-  for (let i=0; i< n*n; i++){
-    board.cells[i] = {
-      row: Math.floor(rowCount),
-      col: (n+i) % n,
-      hidden: true,
-      isMine: Math.random() > 0.7,
-      isMarked: false
+   for (let rowCount = 0; rowCount < n; rowCount++){
+    for (let colCount = 0; colCount < n; colCount++){
+      board.cells.push({
+        row: rowCount,
+        col: colCount,
+        isMine: Math.random() < 0.333,
+        hidden: true,
+        isMarked: false
+      })
     }
-    rowCount += (1/n + 0.001)
-  }
+  } 
+}
+
+
+// Stretch 2: Reset the board
+function resetBoard(defaultBoard){
+  document.querySelector(".board").innerHTML = ""
+  displayMessage("A new challenger presents themselves")
+  generateBoard(defaultBoard)
 }
 
 function startGame () {

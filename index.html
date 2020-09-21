@@ -10,6 +10,26 @@
   <body>
     <div id="message"></div>
     <div id="notes"></div>
+    <div>
+      <button id="restart-button" onclick="resetBoard()" class="hide">Play Again?</button>
+    </div>
+    <div>
+      <table>
+        <tr> 
+          <th>Size</th>
+        </tr>
+        <tr>
+          <td>
+            <select name="grid-size" id="grid-size" onchange="createBoard(this.value)">
+              <option value="3">3x3</option>
+              <option value="4">4x4</option>
+              <option value="5">5v5</option>
+              <option value="6" selected>6v6</option>
+            </select>
+          </td>
+        </tr>
+      </table>
+    </div>
     <div class="board"></div>
   </body>
 </html>
