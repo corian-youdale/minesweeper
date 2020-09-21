@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', startGame)
 // Define your `board` object here!
 const board = {}
 let defaultBoard = 6
+let difficulty = 0.5
 
 // Stretch 1: AutoGenerate Board
 function generateBoard(n){
@@ -13,7 +14,7 @@ function generateBoard(n){
       board.cells.push({
         row: rowCount,
         col: colCount,
-        isMine: Math.random() < 0.333,
+        isMine: Math.random() < difficulty,
         hidden: true,
         isMarked: false
       })
@@ -31,6 +32,10 @@ function resetBoard(){
   checkForWin()
 }
 
+  function changeDifficulty(n){
+    difficulty = n
+    resetBoard()
+  }
  function changeSize(n){
   defaultBoard = n
   resetBoard()
