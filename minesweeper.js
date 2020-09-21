@@ -2,26 +2,26 @@ document.addEventListener('DOMContentLoaded', startGame)
 
 // Define your `board` object here!
 var board = {}
-var cells = []
+const defaultBoard = 4
+
 function generateBoard(n){
   board.cells = []
   let rowCount = 0
-  let colCount = 0
   for (let i=0; i< n*n; i++){
     board.cells[i] = {
       row: Math.floor(rowCount),
-      col: Math.floor(colCount),
+      col: (n+i) % n,
       hidden: true,
       isMine: Math.random() > 0.7,
       isMarked: false
-    
     }
+    rowCount += (1/n + 0.001)
   }
 }
 
 function startGame () {
   // Don't remove this function call: it makes the game work!
-generateBoard()
+  generateBoard(defaultBoard)
 
   for(let i=0;i<board.cells.length;i++){
     board.cells[i].surroundingMines = countSurroundingMines(board.cells[i])
